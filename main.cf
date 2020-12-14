@@ -1,5 +1,4 @@
 maillog_file = /dev/stdout
-mydomain = localhost
 
 # Global Postfix configuration file. This file lists only a subset
 # of all parameters. For the syntax, and for a complete parameter
