@@ -31,6 +31,13 @@ In this case we are forwarding messages via SMTP to localhost:25, where postfix 
 
 ## Postfix
 
-Postfix is largely untouched by this demo - with just enough config to accept email at root@localhost.
+Postfix is largely untouched by this demo and will attempt to cause a mail loop by resending the email towards gsuite.
 This demo uses postfix 3.5 from gh repo to get logging to stdout, in order to remove the need for syslog
 in the demo setup
+
+## Demo
+```
+podman build -t fetch-gsuite .
+podman run --rm -ti --name fetch-gsuite -v $PWD/fetchmailrc:/etc/fetchmailrc -v $PWD/main.cf:/etc/postfix/main.cf -v $PWD/master.cf:/etc/postfix/master.cf fetch-gsuite postfix start-fg
+podman exec -ti fetch-gsuite fetchmail -v -f /etc/fetchmailrc
+```
