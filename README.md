@@ -38,6 +38,8 @@ in the demo setup
 ## Demo
 ```
 podman build -t fetch-gsuite .
-podman run --rm -ti --name fetch-gsuite -v $PWD/fetchmailrc:/etc/fetchmailrc -v $PWD/main.cf:/etc/postfix/main.cf -v $PWD/master.cf:/etc/postfix/master.cf fetch-gsuite postfix start-fg
+podman run --rm -ti --name fetch-gsuite \
+    -v $PWD/fetchmailrc:/etc/fetchmailrc -v $PWD/main.cf:/etc/postfix/main.cf -v $PWD/master.cf:/etc/postfix/master.cf \
+    fetch-gsuite postfix start-fg
 podman exec -ti fetch-gsuite fetchmail -v -f /etc/fetchmailrc
 ```
